@@ -8,6 +8,7 @@ import CounterHooks from './components/CounterHooks'
 import ImageCarousel from './components/ImageCarousel'
 import PokemonList from './components/api-calls/PokemonList'
 import RouterApp from './components/router/App'
+import TodoApp from './components/TodoApp/TodoApp'
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       {/* <CounterHooks /> */}
       {/* <ImageCarousel /> */}
       {/* <PokemonList /> */}
-      <RouterApp />
+      {/* <RouterApp /> */}
+      <TodoApp />
     </div>
   )
 }
