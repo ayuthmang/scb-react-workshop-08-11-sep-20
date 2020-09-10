@@ -7,6 +7,11 @@ import matcha4 from '../images/matcha-4.jpg'
 const images = [matcha1, matcha2, matcha3, matcha4]
 
 function Image({ src }) {
+  useEffect(() => {
+    return () => {
+      console.log('image unmounted')
+    }
+  })
   return (
     <img
       style={{ borderRadius: '10px', boxShadow: '2px 2px 20px 1px grey' }}
@@ -24,18 +29,19 @@ function ImageCarousel() {
   // componentDidMount, componentDidUpdate, componentWillUnmount
   useEffect(() => {
     // componentDidMount, componentDidUpdate
-    console.log('useEffect')
     let interval
+    console.log('interval', interval)
     if (isPlaying) {
-      interval = setInterval(() => {
+      interval = setTimeout(() => {
         setShowIndex((showIndex + 1) % images.length)
       }, 2000)
     }
 
     // componentWillUnmount
     return () => {
-      console.log('clearEffect')
-      clearInterval(interval)
+      console.log('ImageCarousel unmounted')
+      // console.log('clearEffect')
+      clearTimeout(interval)
     }
   }, [showIndex, isPlaying])
 
