@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
-import Link from './Link'
 import VisibleTodoList from './VisibleTodoList'
 import AddTodo from './AddTodo'
+import Footer from './Footer'
 
 function getVisibilityFilter(todos, visibilityFilter) {
   return todos.filter((todo) => {
@@ -26,57 +26,35 @@ function TodoApp() {
   ])
   const [visibilityFilter, setVisibilityFilter] = useState('all')
 
+  function onTodoClick(id) {
+    setTodos(
+      todos.map((targetTodo) => {
+        if (targetTodo.id !== id) {
+          return targetTodo
+        }
+
+        return {
+          ...targetTodo,
+          completed: !targetTodo.completed,
+        }
+      })
+    )
+  }
+  function onFormSubmit(text) {
+    setTodos([...todos, { id: id++, text: text, completed: false }])
+  }
+  function onFilterClick(filter) {
+    setVisibilityFilter(filter)
+  }
+
   return (
     <div>
       <VisibleTodoList
         todos={getVisibilityFilter(todos, visibilityFilter)}
-        onClick={(id) => {
-          setTodos(
-            todos.map((targetTodo) => {
-              if (targetTodo.id !== id) {
-                return targetTodo
-              }
-
-              return {
-                ...targetTodo,
-                completed: !targetTodo.completed,
-              }
-            })
-          )
-        }}
+        onClick={onTodoClick}
       />
-
-      <AddTodo
-        onSubmit={(text) => {
-          setTodos([...todos, { id: id++, text: text, completed: false }])
-        }}
-      />
-
-      <div>
-        <p>
-          Show:{' '}
-          <Link
-            active={visibilityFilter === 'all'}
-            onClick={() => setVisibilityFilter('all')}
-          >
-            All
-          </Link>{' '}
-          |{' '}
-          <Link
-            active={visibilityFilter === 'completed'}
-            onClick={() => setVisibilityFilter('completed')}
-          >
-            Completed
-          </Link>{' '}
-          |{' '}
-          <Link
-            active={visibilityFilter === 'acitve'}
-            onClick={() => setVisibilityFilter('active')}
-          >
-            Active
-          </Link>
-        </p>
-      </div>
+      <AddTodo onSubmit={onFormSubmit} />
+      <Footer visibilityFilter={visibilityFilter} onFilterClick={onFilterClick} />
     </div>
   )
 }

@@ -9,6 +9,7 @@ import ImageCarousel from './components/ImageCarousel'
 import PokemonList from './components/api-calls/PokemonList'
 import RouterApp from './components/router/App'
 import TodoApp from './components/TodoApp/TodoApp'
+import TodoAppRedux from './components/TodoAppRedux/TodoApp'
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
       {/* <ImageCarousel /> */}
       {/* <PokemonList /> */}
       {/* <RouterApp /> */}
-      <TodoApp />
+      {/* <TodoApp /> */}
+      <TodoAppRedux />
     </div>
   )
 }
