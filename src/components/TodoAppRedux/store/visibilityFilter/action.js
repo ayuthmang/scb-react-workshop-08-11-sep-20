@@ -1,8 +1,3 @@
-// actions
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
+import { createAction } from '@reduxjs/toolkit'
 
-// action creators
-export const setVisibilityFilter = (filter) => ({
-  type: SET_VISIBILITY_FILTER,
-  payload: filter,
-})
+export const setVisibilityFilter = createAction('SET_VISIBILITY_FILTER')

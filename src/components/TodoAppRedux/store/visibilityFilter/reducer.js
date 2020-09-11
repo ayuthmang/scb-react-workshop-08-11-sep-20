@@ -1,12 +1,8 @@
-import { SET_VISIBILITY_FILTER } from './action'
+import { createReducer } from '@reduxjs/toolkit'
+import { setVisibilityFilter } from './action'
 
-function visibilityFilterReducer(state = 'all', action) {
-  switch (action.type) {
-    case SET_VISIBILITY_FILTER:
-      return action.payload
-    default:
-      return state
-  }
-}
+const visibilityFilterReducer = createReducer('all', {
+  [setVisibilityFilter]: (_, action) => action.payload,
+})
 
 export default visibilityFilterReducer
